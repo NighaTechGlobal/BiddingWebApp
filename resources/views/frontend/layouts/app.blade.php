@@ -1182,7 +1182,8 @@
                             <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
 
                                 <div class="post-img position-relative overflow-hidden">
-                                    <img src="{{asset('/frontend')}}/assets/img/blog/blog-1.jpg" class="img-fluid"
+{{--                                    <img src="{{asset('/frontend')}}/assets/img/blog/blog-1.jpg" class="img-fluid"--}}
+                                    <img src="{{ asset('storage/' . $tender_value->work_photos) }}" class="img-fluid"
                                          alt="">
                                     <span class="post-date">{{$tender_value->category}}</span>
                                 </div>
