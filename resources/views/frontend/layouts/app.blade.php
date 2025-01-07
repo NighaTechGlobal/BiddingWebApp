@@ -130,7 +130,9 @@
                     <p data-aos="fade-up" data-aos-delay="100">India’s Best Private Tender And Auction Plateform</p>
                     <div class="d-flex flex-column flex-md-row" data-aos="fade-up" data-aos-delay="200">
                         <a href="#about" class="btn-get-started">Get Started <i class="bi bi-arrow-right"></i></a>
-                        <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
+                        <a
+{{--                            href="https://www.youtube.com/watch?v=Y7f98aduVJ8"--}}
+                            href="https://www.youtube.com/watch?v=VPCyY344Tks&pp=ygURYmlkZGluZyBpbiB0ZWx1Z3U%3D"
                            class="glightbox btn-watch-video d-flex align-items-center justify-content-center ms-0 ms-md-4 mt-4 mt-md-0"><i
                                 class="bi bi-play-circle"></i><span>Watch Video</span></a>
                     </div>
@@ -154,10 +156,7 @@
                         <h3>Who We Are</h3>
                         <h2>Get Bid - Tenders & Auctions</h2>
                         <p>
-                            Welcome to [Your Website Name], where buying and selling meet innovation. We bring you a
-                            platform to bid on your favorite items, discover rare finds, and connect with buyers and
-                            sellers across India. Trusted, secure, and efficient – we make auctions accessible to
-                            everyone.
+                            Welcome to getbid, where buying and selling meet innovation. We bring you a platform to bid on your favorite items, discover rare finds, and connect with buyers and sellers across India. Trusted, secure, and efficient – we make auctions accessible to everyone.
                         </p>
                         <div class="text-center text-lg-start">
                             <a href="#"
@@ -1309,13 +1308,13 @@
                     <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
 
                         <div class="post-img position-relative overflow-hidden">
-                            <img src="{{asset('/frontend')}}/assets/img/blog/blog-1.jpg" class="img-fluid" alt="">
-                            <span class="post-date">Electronics & Gadgets</span>
+                            <img src="{{asset('/frontend')}}/assets/img/blog/home3.jpg" class="img-fluid" alt="">
+                            <span class="post-date">Residential Homes</span>
                         </div>
 
                         <div class="post-content d-flex flex-column">
 
-                            <h3 class="post-title">Apple iPhone 14 Pro - 256GB, Space Black</h3>
+                            <h3 class="post-title">Fully renovated or fixer-uppers, available for immediate purchase or renovation projects.</h3>
 
                             <div class="meta d-flex align-items-center">
                                 <div class="d-flex align-items-center">
@@ -1343,13 +1342,13 @@
                     <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="200">
 
                         <div class="post-img position-relative overflow-hidden">
-                            <img src="{{asset('/frontend')}}/assets/img/blog/blog-2.jpg" class="img-fluid" alt="">
-                            <span class="post-date">Fashion & Apparel</span>
+                            <img src="{{asset('/frontend')}}/assets/img/blog/home1.jpg" class="img-fluid" alt="">
+                            <span class="post-date">Commercial Properties</span>
                         </div>
 
                         <div class="post-content d-flex flex-column">
 
-                            <h3 class="post-title">Gucci GG Marmont Matelassé Leather Shoulder Bag</h3>
+                            <h3 class="post-title">Prime office spaces, retail units, and mixed-use properties located in high-demand areas.</h3>
 
                             <div class="meta d-flex align-items-center">
                                 <div class="d-flex align-items-center">
@@ -1376,13 +1375,13 @@
                     <div class="post-item position-relative h-100">
 
                         <div class="post-img position-relative overflow-hidden">
-                            <img src="{{asset('/frontend')}}/assets/img/blog/blog-3.jpg" class="img-fluid" alt="">
-                            <span class="post-date">Home Goods & Furniture</span>
+                            <img src="{{asset('/frontend')}}/assets/img/blog/home2.jpg" class="img-fluid" alt="">
+                            <span class="post-date">Renovation Materials</span>
                         </div>
 
                         <div class="post-content d-flex flex-column">
 
-                            <h3 class="post-title">Mid-Century Modern Teak Wood Dining Table - Seats 6</h3>
+                            <h3 class="post-title">Flooring, drywall, paint, and other essentials for your next remodeling job.</h3>
 
                             <div class="meta d-flex align-items-center">
                                 <div class="d-flex align-items-center">

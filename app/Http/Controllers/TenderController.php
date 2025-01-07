@@ -83,7 +83,12 @@ class TenderController extends Controller
         }
 
         if ($request->hasFile('work_photos')) {
-            Storage::disk('public')->delete($tender->work_photos);
+
+
+            $url = url('').'/';
+            if (file_exists($url.$tender->work_photos)) {
+                Storage::disk('public')->delete($tender->work_photos);
+            }
             $validated['work_photos'] = $request->file('work_photos')->store('work_photos', 'public');
         }
 
