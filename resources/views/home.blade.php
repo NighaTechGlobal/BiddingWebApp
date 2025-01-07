@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.backend')
 
 @section('content')
     <!-- Bootstrap 5 CSS -->
@@ -75,43 +75,104 @@
             margin-bottom: 1rem;
         }
     </style>
+
+
+
+
+    <!-- new code : start  -->
+
+
+    <!-- Hero -->
+    <div class="bg-body-light">
+        <div class="content content-full">
+            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">Dashboard</h1>
+                <nav class="flex-shrink-0 my-2 my-sm-0 ms-sm-3" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">App</li>
+                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- END Hero -->
+
+    <!-- Page Content -->
     @if($user_info->email_verify_status == 1 && $user_info->mobile_verify_status == 1)
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">{{ __('Dashboard') }}</div>
+        <div class="content">
+            <div class="row items-push">
+                <div class="col-md-6 col-xl-6 col-lg-6">
+                    <div class="block block-rounded h-100 mb-0">
+                        <div class="block-header block-header-default">
+                            <h3 class="block-title">
+                                Hello , {{!empty(auth()->user()->name) ? auth()->user()->name : ''}}
+                            </h3>
+                        </div>
+                        <div class="block-content">
+                            <p>
+                                Welcome to getbid.in  - Tender & Auction Portal
+                            </p>
+                            <p>
 
-                        <div class="card-body">
-                            @if (session('status'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
-
-                            {{ __('You are logged in!') }}
-
-                            @if (session('message_user_info'))
-                               <br/> <span class="green">
-                                        <strong> {{ session('message_user_info') }} </strong>
-                                    </span>
-                            @endif
+                            </p>
+                            <p class="fw-semibold">
+                                Wish you all the best!
+                            </p>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     @endif
+    <!-- END Page Content -->
 
-    <div class="container">
-        <div class="row justify-content-center min-vh-100 align-items-center">
-            <div class="col-12 col-md-6 col-lg-4">
+
+    <!-- new code : end -->
+
+
+
+
+
+    @if($user_info->email_verify_status == 1 && $user_info->mobile_verify_status == 1)
+        {{--        <div class="container">--}}
+        {{--            <div class="row justify-content-center">--}}
+        {{--                <div class="col-md-4">--}}
+        {{--                    <div class="card">--}}
+        {{--                        <div class="card-header">{{ __('Dashboard') }}</div>--}}
+
+        {{--                        <div class="card-body">--}}
+        {{--                            @if (session('status'))--}}
+        {{--                                <div class="alert alert-success" role="alert">--}}
+        {{--                                    {{ session('status') }}--}}
+        {{--                                </div>--}}
+        {{--                            @endif--}}
+
+        {{--                            {{ __('You are logged in!') }}--}}
+
+        {{--                            @if (session('message_user_info'))--}}
+        {{--                                <br/> <span class="green">--}}
+        {{--                                        <strong> {{ session('message_user_info') }} </strong>--}}
+        {{--                                    </span>--}}
+        {{--                            @endif--}}
+        {{--                        </div>--}}
+        {{--                    </div>--}}
+        {{--                </div>--}}
+        {{--            </div>--}}
+        {{--        </div>--}}
+    @endif
+
+    {{--    <div class="container">--}}
+    {{--        <div class="row justify-content-center min-vh-100 align-items-center">--}}
+
+    <div class="content">
+        <div class="row items-push">
+            <div class="col-12 col-md-6 col-lg-6">
             @php $compy_sunmit_btn =0; @endphp
 
             @if(!empty($user_info))
                 @if($user_info->email_verify_status == 1 && $user_info->mobile_verify_status == 1)
-
-
 
 
 
@@ -134,8 +195,9 @@
                                 </form>
 
                                 <div id="otp-section">
-                                    <form id="gst-otp-form">
-                                        <div class="otp-gst-section " style="display: none;">
+                                    <form id="gst-otp-form " class="">
+                                        {{--                                        <div class="otp-gst-section " style="display: none;">--}}
+                                        <div class="otp-section otp-gst-section" style="display: none;">
                                             {{--                                            <label for="otp">OTP:</label>--}}
                                             <input type="text" id="otp" name="otp" class="form-control mb-0"
                                                    placeholder="OTP" required>
@@ -147,9 +209,9 @@
                                     </form>
                                 </div>
                             @elseif($user_info->gst_verify_status == 1 )
-                                @php $compy_sunmit_btn =1; @endphp
-                                <span class="green"> <strong> GST Number Verified &#x2705;</strong></span>
-                                <br>
+{{--                                @php $compy_sunmit_btn =1; @endphp--}}
+{{--                                <span class="green"> <strong> GST Number Verified &#x2705;</strong></span>--}}
+{{--                                <br>--}}
                             @endif
                         <!-- GST : End-->
 
@@ -157,27 +219,13 @@
 
                         <!-- Address for : start -->
 
-                            <div class="card border-0 shadow-sm p-4">
-                                <!-- Aadhaar  : start -->
+
+                            <!-- Aadhaar  : start -->
                             @if($user_info->aadhaar_verify_status == 0 )
+                                <div class="card border-0 shadow-sm p-4">
 
 
-                                {{--                                    <form method="POST" action="{{route('verifyaadhaar')}}">--}}
-                                {{--                                        <div class="otp-section">--}}
-                                {{--                                            <!-- Aadhaar Section -->--}}
-                                {{--                                            <input type="text" class="form-control mb-0" placeholder="Aadhaar">--}}
-                                {{--                                            <button type="submit" class="verify-btn">Verify</button>--}}
-                                {{--                                        </div>--}}
-
-                                {{--                                        <!-- OTP Section -->--}}
-                                {{--                                        <div class="otp-section">--}}
-                                {{--                                            <input type="text" class="form-control mb-0" placeholder="OTP" required--}}
-                                {{--                                                   name="otp">--}}
-                                {{--                                            <button type="submit" class="verify-btn">Verify</button>--}}
-                                {{--                                        </div>--}}
-                                {{--                                    </form>--}}
-
-                                <!-- Aadhar Verification -->
+                                    <!-- Aadhar Verification -->
 
                                     <!-- Aadhar Verification -->
 
@@ -204,173 +252,158 @@
                                             </div>
                                         </form>
                                     </div>
-
+                                </div>
                             @elseif($user_info->aadhaar_verify_status == 1 )
                                 {{--                                    @php $compy_sunmit_btn =1; @endphp--}}
                                 {{--                                    <span class="green"> <strong> Aadhar Number Verified &#x2705;</strong></span>--}}
                                 {{--                                    <br>--}}
                             @endif
-                            <!-- Aadhaar  : end -->
+                        <!-- Aadhaar  : end -->
 
 
-                            @endif
-
-                            <!-- Personal Info & Company info : start-->
-
-                                @if(!empty($user_info->name1) && !empty($user_info->address1))
-                                @else
-                                    <form method="POST" action="{{route('userinfostore')}}">
-                                        @csrf
-
-                                        <h4> @if($user_info->company == 'company' ) Company Info @else Personal
-                                            Info @endif</h4>
-                                        <!-- Personal Info -->
-                                        <input type="text" class="form-control" placeholder="Name" name="name" required
-                                               value="{{old('name')}}">
-
-                                        <!-- Address -->
-                                        <input type="text" class="form-control" placeholder="Address 1" name="address1"
-                                               required>
-                                        <input type="text" class="form-control" placeholder="Address 2" name="address2">
-
-                                        <!-- District and Pincode -->
-                                        <div class="pincode-district">
-                                            <input type="text" class="form-control mb-0" placeholder="District"
-                                                   name="district"
-                                                   required>
-                                            <input type="text" class="form-control mb-0" placeholder="Pincode"
-                                                   name="pincode"
-                                                   maxlength="6"
-                                                   required>
-                                        </div>
-
-                                        <!-- State -->
-                                        <input type="text" class="form-control" placeholder="State" name="state"
-                                               required>
-
-                                        <!-- Contact Info -->
-                                        <input type="tel" class="form-control" placeholder="Phone Number"
-                                               name="phone_number"
-                                               maxlength="10"
-                                               required>
-                                        <input type="email" class="form-control" placeholder="Email ID" name="email"
-                                               required>
-
-                                        <!-- Submit Button  -->
-{{--                                        {{ $compy_sunmit_btn == 1 ? ' ' : 'disabled' }}--}}
-                                        <button type="submit"
-                                                class="submit-btn"  >
-                                            Submit
-                                        </button>
-                                    </form>
-                            @endif
-                            <!-- Personal Info & Company info : end-->
-
-
-                            </div>
-
-                            <!-- Address for : start -->
-
-                        @else
-                            <div class="card border-0 shadow-sm">
-                                <div class="card-body p-4">
-                                    <h4 class="text-center mb-1">Signup</h4>
-                                    <p class="text-center text-muted small mb-4">Just some details to get you in!</p>
-
-
-                                    <!-- Mobile OTP Field -->
-                                    <div class="mb-3">
-                                        <form method="POST" action="{{route('verifymobile')}}" id="frmmb">
-                                            @csrf
-                                            <div class="input-group">
-                                                @if(!empty($user_info))
-                                                    @if($user_info->mobile_verify_status == 0 )
-
-                                                        <input type="text" class="form-control mb-0" name="otp"
-                                                               value="{{old('otp')}}"
-                                                               placeholder="Mobile Number OTP" required>
-                                                        <button class="btn btn-primary verify-btn" type="submit">Verify
-                                                        </button>
-                                                    @elseif($user_info->mobile_verify_status == 1 )
-                                                        {{--                                                        <span--}}
-                                                        {{--                                                            class="green"> <strong> Mobile Number Verified &#x2705;</strong></span>--}}
-                                                    @endif
-                                                @endif
-                                            </div>
-
-                                            @if (session('message'))
-                                                <span class="green">
-                                        <strong> {{ session('message') }} </strong>
-                                    </span>
-                                            @endif
-                                        </form>
-                                    </div>
-
-                                    <!-- Email OTP Field -->
-                                    <div class="mb-4">
-                                        <form method="POST" action="{{route('verifyemail')}}">
-                                            @csrf
-                                            <div class="input-group">
-                                                @if(!empty($user_info))
-                                                    @if($user_info->email_verify_status == 0 )
-                                                        <input type="text" class="form-control mb-0"
-                                                               placeholder="Email OTP"
-                                                               name="otp"
-                                                               required
-                                                               value="{{old('otp')}}">
-                                                        <button class="btn btn-primary verify-btn" type="submit">Verify
-                                                        </button>
-                                                    @elseif($user_info->email_verify_status == 1 )
-                                                        {{--                                                        <span--}}
-                                                        {{--                                                            class="green"> <strong> Email Verified &#x2705;</strong></span>--}}
-                                                    @endif
-                                                @endif
-                                            </div>
-
-                                            @if (session('message1'))
-                                                <span class="green">
-                                        <strong> {{ session('message1') }} </strong>
-                                    </span>
-                                            @endif
-                                        </form>
-                                    </div>
-
-                                    <!-- Submit Button -->
-                                    <div class="d-grid">
-                                        {{--                                        <button type="button" class="btn btn-primary submit-btn py-2">Submit</button>--}}
-                                    </div>
-
-                                </div>
-                            </div>
                         @endif
+
+                    <!-- Personal Info & Company info : start-->
+
+                        @if(!empty($user_info->name1) && !empty($user_info->address1))
+                        @else
+                            <form method="POST" action="{{route('userinfostore')}}">
+                                @csrf
+
+                                <h4> @if($user_info->company == 'company' ) Company Info @else Personal
+                                    Info @endif</h4>
+                                <!-- Personal Info -->
+                                <input type="text" class="form-control" placeholder="Name" name="name" required
+                                       value="{{old('name')}}">
+
+                                <!-- Address -->
+                                <input type="text" class="form-control" placeholder="Address 1" name="address1"
+                                       required>
+                                <input type="text" class="form-control" placeholder="Address 2" name="address2">
+
+
+
+                                <!-- State -->
+
+                                <select id="state" onchange="updateCities()"  class="form-control form-select   " placeholder="State" name="state"
+                                        required>
+                                    <option value="">Select State</option>
+                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                    <option value="Bihar">Bihar</option>
+                                    <option value="Delhi">Delhi</option>
+                                    <option value="Goa">Goa</option>
+                                    <option value="Gujarat">Gujarat</option>
+                                    <option value="Haryana">Haryana</option>
+                                    <option value="Karnataka">Karnataka</option>
+                                    <option value="Maharashtra">Maharashtra</option>
+                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                    <option value="West Bengal">West Bengal</option>
+                                    <!-- Add more states as needed -->
+                                </select>
+
+                                <!-- District and Pincode -->
+                                <div class="pincode-district">
+
+                                    <select id="city" class="form-control form-select"  name="district" placeholder="District" required>
+                                        <option value="">Select City</option>
+                                    </select>
+{{--                                    <input type="text" class="form-control mb-0" placeholder="District"--}}
+{{--                                           name="district"--}}
+{{--                                           required>--}}
+                                    <input type="text" class="form-control " placeholder="Pincode"
+                                           name="pincode"
+                                           maxlength="6"
+                                           required>
+                                </div>
+{{--                                <input type="text" class="form-control" placeholder="State" name="state"--}}
+{{--                                       required>--}}
+
+                                <!-- Contact Info -->
+                                <input type="tel" class="form-control" placeholder="Phone Number"
+                                       name="phone_number"
+                                       maxlength="10"
+                                       required>
+                                <input type="email" class="form-control" placeholder="Email ID" name="email"
+                                       required>
+
+                                <!-- Submit Button  -->
+                                {{--                                        {{ $compy_sunmit_btn == 1 ? ' ' : 'disabled' }}--}}
+                                <button type="submit"
+                                        class="submit-btn">
+                                    Submit
+                                </button>
+                            </form>
+                        @endif
+                    <!-- Personal Info & Company info : end-->
+                        <!-- Address for : start -->
+
+                    @else
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <h4 class="text-center mb-1">Signup</h4>
+                                <p class="text-center text-muted small mb-4">Just some details to get you in!</p>
+
+
+                                <!-- Mobile OTP Field -->
+                                <div class="mb-3">
+                                    <form method="POST" action="{{route('verifymobile')}}" id="frmmb">
+                                        @csrf
+                                        <div class="input-group">
+                                            @if(!empty($user_info))
+                                                @if($user_info->mobile_verify_status == 0 )
+
+                                                    <input type="text" class="form-control mb-0" name="otp"
+                                                           value="{{old('otp')}}"
+                                                           placeholder="Mobile Number OTP" required>
+                                                    <button class="btn btn-primary verify-btn" type="submit">Verify
+                                                    </button>
+                                                @elseif($user_info->mobile_verify_status == 1 )
+                                                    {{--                                                        <span--}}
+                                                    {{--                                                            class="green"> <strong> Mobile Number Verified &#x2705;</strong></span>--}}
+                                                @endif
+                                            @endif
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <!-- Email OTP Field -->
+                                <div class="mb-4">
+                                    <form method="POST" action="{{route('verifyemail')}}">
+                                        @csrf
+                                        <div class="input-group">
+                                            @if(!empty($user_info))
+                                                @if($user_info->email_verify_status == 0 )
+                                                    <input type="text" class="form-control mb-0"
+                                                           placeholder="Email OTP"
+                                                           name="otp"
+                                                           required
+                                                           value="{{old('otp')}}">
+                                                    <button class="btn btn-primary verify-btn" type="submit">Verify
+                                                    </button>
+                                                @elseif($user_info->email_verify_status == 1 )
+                                                    {{--                                                        <span--}}
+                                                    {{--                                                            class="green"> <strong> Email Verified &#x2705;</strong></span>--}}
+                                                @endif
+                                            @endif
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <div class="d-grid">
+                                    {{--                                        <button type="button" class="btn btn-primary submit-btn py-2">Submit</button>--}}
+                                </div>
+
+                            </div>
+                        </div>
                     @endif
+                @endif
 
 
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap 5 JS Bundle -->
-    {{--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>--}}
 @endsection
 
-
-{{--<div class="container">--}}
-{{--    <div class="row justify-content-center">--}}
-{{--        <div class="col-md-8">--}}
-{{--            <div class="card">--}}
-{{--                <div class="card-header">{{ __('Dashboard') }}</div>--}}
-
-{{--                <div class="card-body">--}}
-{{--                    @if (session('status'))--}}
-{{--                        <div class="alert alert-success" role="alert">--}}
-{{--                            {{ session('status') }}--}}
-{{--                        </div>--}}
-{{--                    @endif--}}
-
-{{--                    {{ __('You are logged in!') }}--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}

@@ -35,14 +35,14 @@ class HomeController extends Controller
 
         if($otp == 4321){
 
-            // APi call
+            // APi call== message
             User::where('id',auth()->user()->id)->update(['mobile_verify_status' => 1]);
-            return back()->with('message','Mobile No. Verify Successfully');
+            return back()->with('success','Mobile Number Verify Successfully');
         }
         else{
-            return back()->with('message','Invalid otp!');
+            return back()->with('error','Invalid otp!');
         }
-        return back()->with('message','');
+        return back()->with('error','Invalid otp!'); //->with('message','');
 //        return view('home');
     }
 
@@ -54,10 +54,10 @@ class HomeController extends Controller
 
             // APi call
             User::where('id',auth()->user()->id)->update(['email_verify_status' => 1]);
-            return back()->with('message1','Email Verify Successfully');
+            return back()->with('success','Email Verify Successfully');
         }
         else{
-            return back()->with('message1','Invalid otp!');
+            return back()->with('error','Invalid otp!');
         }
         return back()->with('message1','');
     }
@@ -109,7 +109,7 @@ class HomeController extends Controller
 
             'name' => 'required|string',
             'address1' => 'required|string',
-            'address2' => 'required|string',
+//            'address2' => 'required|string',
             'district' => 'required',
             'state' => 'required|string',
             'pincode' => 'required|numeric|min_digits:6',
@@ -121,19 +121,19 @@ class HomeController extends Controller
 //print_r($request->all());exit();
 
         if ($validator->fails()) {
-//            return response()->json([
-//                'success' => false,
-//                // 'thumbnail_size'=>$request->file('thumbnail'),
-////                    'tiny_home_images'=>$request->file('tiny_home_images'),
-////                    'tiny_home_images_size'=>$getarr_imgs,
-//                "message" => $validator->errors()->first(),
-//            ], 500);
-
-            return back()->with('message_user_info',$validator->errors()->first());
+            return back()->with('error',$validator->errors()->first());
         }
 
 
+
+
         $userinfo = User::find(auth()->user()->id);
+
+        if($userinfo->gst_verify_status == 0){
+            return back()->with('error','First Need to Verify GST Number!');
+        }
+
+
         $userinfo->name1 = !empty($request->name) ? $request->name : '' ;
         $userinfo->address1 = !empty($request->address1) ? $request->address1 : '' ;
         $userinfo->address2 = !empty($request->address2) ? $request->address2 : '' ;
@@ -149,12 +149,12 @@ class HomeController extends Controller
 
         if(!empty($userinfo)){
 
-            return back()->with('message_user_info','Record added Successfully');
+            return back()->with('success','Information Added Successfully');
         }
         else{
-            return back()->with('message_user_info','Something went wrong!');
+            return back()->with('error','Something went wrong!');
         }
-        return back()->with('message_user_info','');
+        return back()->with('error','Something went wrong!');
 //        return view('home');
     }
 
@@ -205,7 +205,7 @@ class HomeController extends Controller
         ]);
 
         // Simulate sending OTP (You can integrate a real SMS service here)
-        $otp = rand(100000, 999999);
+        $otp = 123456; //rand(100000, 999999);
 
         // Store the OTP in the session (or database)
         session(['gst_otp' => $otp]);
@@ -222,6 +222,7 @@ class HomeController extends Controller
 
         // Check if the OTP matches
         if ($request->otp == session('gst_otp')) {
+            User::where('id',auth()->user()->id)->update(['gst_verify_status' => 1]);
             return response()->json(['message' => 'OTP verified successfully.']);
         }
 

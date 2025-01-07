@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Tender;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+//    $user_id = !empty(auth()->user()) ? auth()->user()->id  : 0;latest()->
+    $tenders = Tender::orderBy('end_date', 'asc')->whereDate('end_date','>=',date('Y-m-d'))->take(3)->get();
+    return view('frontend.welcome',compact('tenders'));
 });
 Route::post('loginauth', [\App\Http\Controllers\Auth\LoginController::class, 'loginauth'])->name('loginauth');
+
+Route::match(['get', 'post'], '/dashboard', function(){
+    return view('dashboard');
+});
+Route::view('/pages/slick', 'pages.slick');
+Route::view('/pages/datatables', 'pages.datatables');
+Route::view('/pages/blank', 'pages.blank');
 
 Auth::routes();
 
@@ -30,7 +40,7 @@ Route::post('/home/users/info/store', [App\Http\Controllers\HomeController::clas
 
 Route::post('/verify-aadhaar', [App\Http\Controllers\HomeController::class, 'verifyAadhaar1']);
 Route::post('/verify-otp', [App\Http\Controllers\HomeController::class, 'verifyOtp']);
-
+Route::resource('tenders', App\Http\Controllers\TenderController::class);
 // gst
 
 Route::post('/verify-gst', [App\Http\Controllers\HomeController::class, 'verifyGst']);
